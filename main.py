@@ -43,13 +43,14 @@ trainset = torchvision.datasets.CIFAR10(
     root='./data', train=True, download=True, transform=transform_train)
 trainloader = None
 if args.idx:
-    print('==> Loading a subset ', args.idx)
+    print('==> Training on a subset ', args.idx)
     path = Path('./split_indices/').expanduser()
     prefix = "split_part"
     subset_idx = torch.load(path/(prefix+str(args.idx)+'.pt'))
     dataset = torch.utils.data.dataset.Subset(trainset, subset_idx.indices)
     trainloader = torch.utils.data.DataLoader(dataset, batch_size=128, shuffle=True, num_workers=2)
 else:
+    print('==> Training on the full dataset')
     trainloader = torch.utils.data.DataLoader(trainset, batch_size=128, shuffle=True, num_workers=2)
 
 testset = torchvision.datasets.CIFAR10(
