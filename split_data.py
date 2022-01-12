@@ -48,7 +48,13 @@ num_clients = 3
 if args.n:
     num_clients = args.n
 
-traindata_split = torch.utils.data.random_split(trainset,
+traindata_split=None
+if 3==num_clients:
+    part_num = int(trainset.data.shape[0] / num_clients)
+    last_n = trainset.data.shape[0] - (part_num*2)
+    traindata_split = torch.utils.data.random_split(trainset,[part_num, part_num, last_n])
+else:
+    traindata_split = torch.utils.data.random_split(trainset,
                             [int(trainset.data.shape[0] / num_clients) for _ in range(num_clients)])
 
 for i in range(len(traindata_split)):
