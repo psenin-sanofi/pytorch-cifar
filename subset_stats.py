@@ -21,4 +21,4 @@ classes = ('plane', 'car', 'bird', 'cat', 'deer',
            'dog', 'frog', 'horse', 'ship', 'truck')
 
 for i in range(10):
-    print(calsses[i], buckets[i])
+    print(classes[i], buckets[i])
