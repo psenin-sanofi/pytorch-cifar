@@ -15,11 +15,12 @@ from utils import progress_bar
 from pathlib import Path
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
-parser.add_argument('--idx', '-i', type=int, help='index number to use')
+parser.add_argument('-i', '--idx', type=int, help='index number to use')
 parser.add_argument('--lr', default=0.1, type=float, help='learning rate')
-parser.add_argument('--resume', '-r', action='store_true',
-                    help='resume from checkpoint')
+parser.add_argument('-r', '--resume', action='store_true', help='resume from checkpoint')
 args = parser.parse_args()
+for arg in vars(args):
+    print(arg, getattr(args, arg))
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 best_acc = 0  # best test accuracy
