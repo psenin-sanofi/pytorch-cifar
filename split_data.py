@@ -7,6 +7,16 @@ import torchvision.transforms as transforms
 
 import numpy as np
 
+import os
+import argparse
+
+parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
+parser.add_argument('--n', '-n', type=int, help='the number of chunks to split into')
+args = parser.parse_args()
+for arg in vars(args):
+    print(arg, getattr(args, arg))
+
+
 path = Path('./split_indices/').expanduser()
 path.mkdir(parents=True, exist_ok=True)
 prefix = "split_part"
@@ -34,7 +44,10 @@ testset = torchvision.datasets.CIFAR10(
     root='./data', train=False, download=True, transform=transform_test)
 
 # Dividing the training data into num_clients, with each client having equal number of images
-num_clients = 5
+num_clients = 3
+if args.n:
+    num_clients = args.n
+
 traindata_split = torch.utils.data.random_split(trainset,
                             [int(trainset.data.shape[0] / num_clients) for _ in range(num_clients)])
 
