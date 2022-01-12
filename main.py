@@ -15,7 +15,7 @@ from utils import progress_bar
 from pathlib import Path
 
 parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
-parser.add_argument('--idx', default=None, type=int, help='index number to use')
+parser.add_argument('--idx', '-i', type=int, help='index number to use')
 parser.add_argument('--lr', default=0.1, type=float, help='learning rate')
 parser.add_argument('--resume', '-r', action='store_true',
                     help='resume from checkpoint')
