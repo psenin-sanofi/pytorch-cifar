@@ -106,7 +106,7 @@ def test_save(net, testloader, epoch, best_acc):
             os.mkdir('checkpoint')
         torch.save(state, './checkpoint/ckpt.pth')
         best_acc = acc
-    return acc
+    return best_acc
 
 
 def load_data(split_idx):
@@ -197,9 +197,12 @@ def main():
             loss, accuracy = test(net, testloader)
             return float(loss), num_examples["testset"], {"accuracy": float(accuracy)}
 
-    # Start client
-    fl.client.start_numpy_client(args.ip, client=CifarClient())
+    client = CifarClient()
 
+    # Start client
+    fl.client.start_numpy_client(args.ip, client=client)
+
+    print("==> best accuracy:", client.best_acc)
 
 if __name__ == "__main__":
     main()
