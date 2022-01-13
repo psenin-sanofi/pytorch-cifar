@@ -92,7 +92,7 @@ def test_save(net, testloader, best_acc, epoch):
     # Save checkpoint.
     acc = 100.*correct/total
     if acc > best_acc:
-        print('Saving..')
+        print('Saving... accuracy', acc)
         state = {
             'net': net.state_dict(),
             'acc': acc,

@@ -14,4 +14,5 @@ if __name__ == "__main__":
         server_address="[::]:8080",
         config={"num_rounds": 5},
         strategy=strategy,
+        force_final_distributed_eval=True
     )
