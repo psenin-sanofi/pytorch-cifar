@@ -37,7 +37,7 @@ def train(net, optimizer, trainloader, epochs, scheduler):
             inputs, targets = inputs.to(DEVICE), targets.to(DEVICE)
             optimizer.zero_grad()
             outputs = net(inputs)
-            loss = criterion(net(inputs), targets)
+            loss = criterion(outputs, targets)
             loss.backward()
             optimizer.step()
 
