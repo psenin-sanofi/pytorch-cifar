@@ -25,8 +25,9 @@ import argparse
 # 1. PyTorch pipeline: model/train/test/dataloader
 # #############################################################################
 
-def train(net, optimizer, trainloader, epochs, criterion, scheduler):
+def train(net, optimizer, trainloader, epochs, scheduler):
     """Train the network on the training set."""
+    criterion = torch.nn.CrossEntropyLoss()
     net.train()
     for _ in range(epochs):
         train_loss = 0
@@ -69,6 +70,7 @@ def test(net, testloader):
 
 
 def test_save(net, testloader, best_acc, epoch):
+    criterion = torch.nn.CrossEntropyLoss()
     net.eval()
     test_loss = 0
     correct = 0
@@ -165,7 +167,6 @@ def main():
     lr = 0.1
     epochs_step = 5
 
-    criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=5e-4)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=200)
 
@@ -188,8 +189,8 @@ def main():
 
         def fit(self, parameters, config):
             self.set_parameters(parameters)
-            #def train(net, optimizer, trainloader, epochs, criterion, scheduler):
-            train(net, optimizer, trainloader, epochs_step, criterion, scheduler)
+            #def train(net, optimizer, trainloader, epochs, scheduler):
+            train(net, optimizer, trainloader, epochs_step, scheduler)
             self.epoch_counter = self.epoch_counter + epochs_step
             self.best_acc = test_save(net, testloader, self.best_acc, self.epoch_counter)
             return self.get_parameters(), num_examples["trainset"], {}
