@@ -74,7 +74,7 @@ def test(net, testloader):
     return loss, accuracy
 
 
-def test_save(net, testloader, epoch, best_acc):
+def test_save(net, testloader, best_acc, epoch):
     net.eval()
     test_loss = 0
     correct = 0
