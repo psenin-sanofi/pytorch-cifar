@@ -17,12 +17,15 @@ DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 from utils import progress_bar
 
+import os
 import argparse
 
 
 # #############################################################################
 # 1. PyTorch pipeline: model/train/test/dataloader
 # #############################################################################
+
+criterion = nn.CrossEntropyLoss()
 
 def train(net, lr, trainloader, epochs):
     """Train the network on the training set."""
@@ -69,6 +72,41 @@ def test(net, testloader):
     loss /= len(testloader.dataset)
     accuracy = correct / total
     return loss, accuracy
+
+
+def test_save(net, testloader, epoch, best_acc):
+    net.eval()
+    test_loss = 0
+    correct = 0
+    total = 0
+    with torch.no_grad():
+        for batch_idx, (inputs, targets) in enumerate(testloader):
+            inputs, targets = inputs.to(DEVICE), targets.to(DEVICE)
+            outputs = net(inputs)
+            loss = criterion(outputs, targets)
+
+            test_loss += loss.item()
+            _, predicted = outputs.max(1)
+            total += targets.size(0)
+            correct += predicted.eq(targets).sum().item()
+
+            progress_bar(batch_idx, len(testloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
+                         % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
+
+    # Save checkpoint.
+    acc = 100.*correct/total
+    if acc > best_acc:
+        print('Saving..')
+        state = {
+            'net': net.state_dict(),
+            'acc': acc,
+            'epoch': epoch,
+        }
+        if not os.path.isdir('checkpoint'):
+            os.mkdir('checkpoint')
+        torch.save(state, './checkpoint/ckpt.pth')
+        best_acc = acc
+    return acc
 
 
 def load_data(split_idx):
@@ -135,6 +173,10 @@ def main():
 
     # Flower client
     class CifarClient(fl.client.NumPyClient):
+
+        epoch_counter = 0
+        best_acc = 0.0
+
         def get_parameters(self):
             return [val.cpu().numpy() for _, val in net.state_dict().items()]
 
@@ -146,6 +188,8 @@ def main():
         def fit(self, parameters, config):
             self.set_parameters(parameters)
             train(net, args.lr, trainloader, epochs=5)
+            self.epoch_counter = self.epoch_counter + 5
+            self.best_acc = test_save(net, testloader, self.best_acc, self.epoch_counter)
             return self.get_parameters(), num_examples["trainset"], {}
 
         def evaluate(self, parameters, config):

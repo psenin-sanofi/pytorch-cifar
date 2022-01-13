@@ -20,5 +20,6 @@ for i in range(len(dataset.indices)):
 classes = ('plane', 'car', 'bird', 'cat', 'deer',
            'dog', 'frog', 'horse', 'ship', 'truck')
 
+print("==> total", len(dataset.indices), "data points")
 for i in range(10):
     print(classes[i], buckets[i])
