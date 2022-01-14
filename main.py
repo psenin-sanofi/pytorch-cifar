@@ -128,6 +128,9 @@ def train(epoch):
 
         progress_bar(batch_idx, len(trainloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                      % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
+    with open("./checkpoint/loss_acc_tracking.txt", "a") as track:
+        track.write("train" + str(train_loss) + "," + str(100.*correct/total) +
+                    "," + correct + "," + total + "\n")
 
 
 def test(epoch):
@@ -150,7 +153,8 @@ def test(epoch):
             progress_bar(batch_idx, len(testloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                          % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
     with open("./checkpoint/loss_acc_tracking.txt", "a") as track:
-        track.write(str(test_loss) + "," + str(100.*correct/total) + "\n")
+        track.write("test" + str(test_loss) + "," + str(100.*correct/total) +
+                    "," + correct + "," + total + "\n")
 
 
     # Save checkpoint.
