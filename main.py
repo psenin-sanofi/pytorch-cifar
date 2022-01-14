@@ -65,9 +65,9 @@ classes = ('plane', 'car', 'bird', 'cat', 'deer',
 print('==> training on ', len(trainloader.dataset), 'images')
 print('==> testing on ', len(testloader.dataset), 'images')
 
-# IF no such folder exists, create one automatically
-if not os.path.exists(folder_to_save_files):
-    os.mkdir(folder_to_save_files)
+# IF no tracking folder exists, create one automatically
+if not os.path.isdir('checkpoint'):
+    os.mkdir('checkpoint')
 
 # Model
 print('==> Building model..')
@@ -149,8 +149,6 @@ def test(epoch):
 
             progress_bar(batch_idx, len(testloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                          % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
-    if not os.path.isdir('checkpoint'):
-            os.mkdir('checkpoint')
     with open("./checkpoint/loss_acc_tracking.txt", "a") as track:
         track.write(str(test_loss) + "," + str(100.*correct/total) + "\n")
 
@@ -164,8 +162,6 @@ def test(epoch):
             'acc': acc,
             'epoch': epoch,
         }
-        if not os.path.isdir('checkpoint'):
-            os.mkdir('checkpoint')
         torch.save(state, './checkpoint/ckpt.pth')
         best_acc = acc
 
