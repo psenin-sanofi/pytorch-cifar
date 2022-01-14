@@ -20,6 +20,15 @@ from utils import progress_bar
 import os
 import argparse
 
+# IF no tracking folder exists, create one automatically
+if not os.path.isdir('checkpoint'):
+    os.mkdir('checkpoint')
+else:
+    if os.path.isfile('./checkpoint/loss_acc_tracking.txt'):
+        os.remove('./checkpoint/loss_acc_tracking.txt')
+    if os.path.isfile('./checkpoint/ckpt.pth'):
+        os.remove('./checkpoint/ckpt.pth')
+
 
 # #############################################################################
 # 1. PyTorch pipeline: model/train/test/dataloader
@@ -49,6 +58,10 @@ def train(net, optimizer, trainloader, epochs, scheduler):
             progress_bar(batch_idx, len(trainloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                          % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
         scheduler.step()
+
+        with open("./checkpoint/loss_acc_tracking.txt", "a") as track:
+            track.write("train," + str(train_loss) + "," + str(100.*correct/total) +
+                        "," + str(correct) + "," + str(total) + "\n")
 
 
 def test(net, testloader):
@@ -89,6 +102,10 @@ def test_save(net, testloader, best_acc, epoch):
             progress_bar(batch_idx, len(testloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                          % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
 
+    with open("./checkpoint/loss_acc_tracking.txt", "a") as track:
+        track.write("test," + str(test_loss) + "," + str(100.*correct/total) +
+                    "," + str(correct) + "," + str(total) + "\n")
+
     # Save checkpoint.
     acc = 100.*correct/total
     if acc > best_acc:
@@ -98,8 +115,6 @@ def test_save(net, testloader, best_acc, epoch):
             'acc': acc,
             'epoch': epoch,
         }
-        if not os.path.isdir('checkpoint'):
-            os.mkdir('checkpoint')
         torch.save(state, './checkpoint/ckpt.pth')
         best_acc = acc
     return best_acc
