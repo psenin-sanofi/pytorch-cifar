@@ -68,6 +68,11 @@ print('==> testing on ', len(testloader.dataset), 'images')
 # IF no tracking folder exists, create one automatically
 if not os.path.isdir('checkpoint'):
     os.mkdir('checkpoint')
+else:
+    if os.path.isfile('./checkpoint/loss_acc_tracking.txt'):
+        os.remove('./checkpoint/loss_acc_tracking.txt')
+    if os.path.isfile('./checkpoint/ckpt.pth'):
+        os.remove('./checkpoint/ckpt.pth')
 
 # Model
 print('==> Building model..')
@@ -130,7 +135,7 @@ def train(epoch):
                      % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
     with open("./checkpoint/loss_acc_tracking.txt", "a") as track:
         track.write("train" + str(train_loss) + "," + str(100.*correct/total) +
-                    "," + correct + "," + total + "\n")
+                    "," + str(correct) + "," + str(total) + "\n")
 
 
 def test(epoch):
@@ -154,7 +159,7 @@ def test(epoch):
                          % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
     with open("./checkpoint/loss_acc_tracking.txt", "a") as track:
         track.write("test" + str(test_loss) + "," + str(100.*correct/total) +
-                    "," + correct + "," + total + "\n")
+                    "," + str(correct) + "," + str(total) + "\n")
 
 
     # Save checkpoint.
