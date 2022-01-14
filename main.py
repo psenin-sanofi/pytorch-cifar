@@ -134,7 +134,7 @@ def train(epoch):
         progress_bar(batch_idx, len(trainloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                      % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
     with open("./checkpoint/loss_acc_tracking.txt", "a") as track:
-        track.write("train" + str(train_loss) + "," + str(100.*correct/total) +
+        track.write("train," + str(train_loss) + "," + str(100.*correct/total) +
                     "," + str(correct) + "," + str(total) + "\n")
 
 
@@ -158,7 +158,7 @@ def test(epoch):
             progress_bar(batch_idx, len(testloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                          % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
     with open("./checkpoint/loss_acc_tracking.txt", "a") as track:
-        track.write("test" + str(test_loss) + "," + str(100.*correct/total) +
+        track.write("test," + str(test_loss) + "," + str(100.*correct/total) +
                     "," + str(correct) + "," + str(total) + "\n")
 
 
@@ -175,7 +175,7 @@ def test(epoch):
         best_acc = acc
 
 
-for epoch in range(start_epoch, start_epoch+200):
+for epoch in range(start_epoch, start_epoch+250):
     train(epoch)
     test(epoch)
     scheduler.step()
