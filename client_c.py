@@ -180,7 +180,7 @@ def main():
     net = net.to(DEVICE)
 
     lr = 0.1
-    epochs_step = 5
+    epochs_step = 1
 
     optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=5e-4)
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=200)
