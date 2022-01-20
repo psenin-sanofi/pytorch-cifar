@@ -7,7 +7,20 @@ from sklearn.metrics import log_loss
 
 import utils
 
+import os
+import argparse
+
 if __name__ == "__main__":
+
+    """Create model, load data, define Flower client, start Flower client."""
+
+    parser = argparse.ArgumentParser(description='SkLearn MNIST Training')
+    parser.add_argument('--ip', type=str, help='Server ip address to use')
+    args = parser.parse_args()
+    for arg in vars(args):
+        print(arg, getattr(args, arg))
+
+
     # Load MNIST dataset from https://www.openml.org/d/554
     (X_train, y_train), (X_test, y_test) = utils.load_mnist()
 
@@ -46,4 +59,4 @@ if __name__ == "__main__":
             return loss, len(X_test), {"accuracy": accuracy}
 
     # Start Flower client
-    fl.client.start_numpy_client("0.0.0.0:8080", client=MnistClient())
+    fl.client.start_numpy_client(args.ip, client=MnistClient())
