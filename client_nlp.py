@@ -97,6 +97,7 @@ def test(net, testloader):
     accuracy = metric.compute()["accuracy"]
     return loss, accuracy
 
+
 def test_save(net, testloader, best_acc, epoch):
 
     metric = load_metric("accuracy")
@@ -125,6 +126,17 @@ def test_save(net, testloader, best_acc, epoch):
 
 
 def main():
+
+    parser = argparse.ArgumentParser(description='PyTorch IMDB Training')
+    parser.add_argument('--ip', type=str, help='Server ip address to use')
+    parser.add_argument('--idx', type=int, help='index number to use')
+    parser.add_argument('--lr', default=0.1, type=float, help='learning rate')
+    args = parser.parse_args()
+    for arg in vars(args):
+        print(arg, getattr(args, arg))
+
+    """Create model, load data, define Flower client, start Flower client."""
+
     net = AutoModelForSequenceClassification.from_pretrained(
         CHECKPOINT, num_labels=2
     ).to(DEVICE)

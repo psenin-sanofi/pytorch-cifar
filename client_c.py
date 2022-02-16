@@ -164,7 +164,6 @@ def load_data(split_idx):
 
 
 def main():
-    """Create model, load data, define Flower client, start Flower client."""
 
     parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training')
     parser.add_argument('--ip', type=str, help='Server ip address to use')
@@ -174,6 +173,7 @@ def main():
     for arg in vars(args):
         print(arg, getattr(args, arg))
 
+    """Create model, load data, define Flower client, start Flower client."""
 
     # Load model
     net = SimpleDLA()
