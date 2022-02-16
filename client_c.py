@@ -215,9 +215,8 @@ def main():
             loss, accuracy = test(net, testloader)
             return float(loss), num_examples["testset"], {"accuracy": float(accuracy)}
 
-    client = CifarClient()
-
     # Start client
+    client = CifarClient()
     fl.client.start_numpy_client(args.ip, client=client)
 
     print("==> best accuracy:", client.best_acc)

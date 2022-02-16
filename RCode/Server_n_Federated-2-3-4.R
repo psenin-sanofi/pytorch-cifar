@@ -201,7 +201,7 @@ pcmp2 <- ggplot(flcmp_m, aes(x=epoch, y=value, color=variable))+
        x = "Epoch",
        y = "Accuracy",
        color = "Run"
-  ) + scale_y_continuous(limits = c(20, 100),
+  ) + scale_y_continuous(limits = c(50, 100),
                          minor_breaks = seq(20 , 100, 5), 
                          breaks = seq(20, 100, 10)) +
   scale_x_continuous(limits = c(0, 250)) +
