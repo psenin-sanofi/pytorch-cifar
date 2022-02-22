@@ -14,9 +14,9 @@ for arg in vars(args):
     print(arg, getattr(args, arg))
 
 # Path care
-path = Path('./split_indices/').expanduser()
+path = Path('./split_data/').expanduser()
 path.mkdir(parents=True, exist_ok=True)
-prefix = "split_part"
+prefix = "imdb_split_part"
 
 
 # Data
