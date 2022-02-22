@@ -2,7 +2,8 @@
 from pathlib import Path
 
 import torch
-from datasets import load_dataset, load_metric
+import torch.utils.data
+from datasets import load_dataset
 import numpy as np
 import argparse
 
