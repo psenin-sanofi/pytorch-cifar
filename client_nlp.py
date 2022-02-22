@@ -13,6 +13,8 @@ from transformers import AutoTokenizer, DataCollatorWithPadding
 from transformers import AutoModelForSequenceClassification
 from transformers import AdamW
 
+from pathlib import Path
+
 import os
 import argparse
 
@@ -30,13 +32,22 @@ DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 CHECKPOINT = "distilbert-base-uncased"  # transformer model checkpoint
 
 
-def load_data():
+def load_data(split_idx):
     """Load IMDB data (training and eval)"""
     raw_datasets = load_dataset("imdb")
-    raw_datasets = raw_datasets.shuffle(seed=42)
-
     # remove unnecessary data split
     del raw_datasets["unsupervised"]
+
+    if split_idx is not None:
+        train_dd = raw_datasets["train"]
+        print('==> Training on a subset ', split_idx)
+        path = Path('./split_data/').expanduser()
+        prefix = "imdb_split_part"
+        subset_idx = torch.load(path/(prefix+str(split_idx)+'.pt'))
+        dataset = torch.utils.data.dataset.Subset(train_dd, subset_idx.indices)
+        raw_datasets["train"] = dataset
+
+    raw_datasets = raw_datasets.shuffle(seed=42)
 
     tokenizer = AutoTokenizer.from_pretrained(CHECKPOINT)
 
