@@ -1,48 +1,33 @@
-'''Split the CIFAR dataset.'''
+'''NLP train data splitter.'''
 from pathlib import Path
 
 import torch
-import torchvision
-import torchvision.transforms as transforms
-
+from datasets import load_dataset, load_metric
 import numpy as np
-
 import argparse
 
-parser = argparse.ArgumentParser(description='PyTorch CIFAR10 Training data splitter')
+# CLI args
+parser = argparse.ArgumentParser(description='NLP IMDB data splitting')
 parser.add_argument('--n', '-n', type=int, help='the number of chunks to split into')
 args = parser.parse_args()
 for arg in vars(args):
     print(arg, getattr(args, arg))
 
-
+# Path care
 path = Path('./split_indices/').expanduser()
 path.mkdir(parents=True, exist_ok=True)
 prefix = "split_part"
 
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 # Data
 print('==> Preparing data..')
-transform_train = transforms.Compose([
-    transforms.RandomCrop(32, padding=4),
-    transforms.RandomHorizontalFlip(),
-    transforms.ToTensor(),
-    transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
-])
+raw_datasets = load_dataset("imdb")
+del raw_datasets["unsupervised"]
+del raw_datasets["test"]
+raw_datasets = raw_datasets.shuffle(seed=42)
 
-transform_test = transforms.Compose([
-    transforms.ToTensor(),
-    transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
-])
+trainset = raw_datasets["train"]
 
-trainset = torchvision.datasets.CIFAR10(
-    root='./data', train=True, download=True, transform=transform_train)
-
-testset = torchvision.datasets.CIFAR10(
-    root='./data', train=False, download=True, transform=transform_test)
-
-# Dividing the training data into num_clients, with each client having equal number of images
 num_clients = 3
 if args.n:
     num_clients = args.n
