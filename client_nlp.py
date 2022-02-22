@@ -152,7 +152,7 @@ def main():
         CHECKPOINT, num_labels=2
     ).to(DEVICE)
 
-    trainloader, testloader = load_data()
+    trainloader, testloader = load_data(args.idx)
 
     epochs_step = 1
 
