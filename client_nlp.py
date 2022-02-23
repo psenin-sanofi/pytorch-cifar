@@ -4,7 +4,7 @@ import warnings
 import flwr as fl
 import torch
 
-import random
+import numpy as np
 from torch.utils.data import DataLoader
 
 from datasets import load_dataset, load_metric
