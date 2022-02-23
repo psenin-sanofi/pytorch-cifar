@@ -47,9 +47,10 @@ def load_data(split_idx):
         path = Path('./split_data/').expanduser()
         prefix = "imdb_split_part"
         subset_idx = torch.load(path/(prefix+str(split_idx)+'.pt'))
+        train_dl = DataLoader(subset_idx, shuffle=False)
 
         dat = []
-        textgenerator = iter(subset_idx)
+        textgenerator = iter(train_dl)
 
         for i in range(len(subset_idx.indices)):
             try:
