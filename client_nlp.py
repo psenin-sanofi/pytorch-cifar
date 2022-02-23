@@ -84,7 +84,7 @@ def load_data(split_idx):
     )
 
     testloader = DataLoader(
-        tokenized_test_dd["test"], batch_size=32, collate_fn=data_collator
+        tokenized_test_dd, batch_size=32, collate_fn=data_collator
     )
 
     return trainloader, testloader
