@@ -1,7 +1,6 @@
 '''NLP train data splitter.'''
 from pathlib import Path
 
-import torch
 import torch.utils.data
 from datasets import load_dataset
 import numpy as np
@@ -38,7 +37,7 @@ last_n = trainset.data.shape[0] - (part_num*2)
 split_n = [part_num] * (num_clients-1)
 split_n.append(last_n)
 
-traindata_split = torch.utils.data.srandom_split(trainset, split_n)
+traindata_split = torch.utils.data.random_split(trainset, split_n)
 
 for i in range(len(traindata_split)):
     print("==> saving part " + str(i+1) + " out of", len(traindata_split))
