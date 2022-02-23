@@ -12,6 +12,7 @@ from datasets import load_dataset, load_metric
 from transformers import AutoTokenizer, DataCollatorWithPadding
 from transformers import AutoModelForSequenceClassification
 from transformers import AdamW
+import datasets
 
 from pathlib import Path
 
@@ -39,40 +40,51 @@ def load_data(split_idx):
     # remove unnecessary data split
     del raw_datasets["unsupervised"]
 
+    train_dd = raw_datasets["train"]
+
     if split_idx is not None:
-        train_dd = raw_datasets["train"]
         print('==> Training on a subset ', split_idx)
         path = Path('./split_data/').expanduser()
         prefix = "imdb_split_part"
         subset_idx = torch.load(path/(prefix+str(split_idx)+'.pt'))
-        dataset = torch.utils.data.dataset.Subset(train_dd, subset_idx.indices)
-        raw_datasets["train"] = dataset
+
+        dat = []
+        textgenerator = iter(subset_idx)
+
+        for i in range(len(subset_idx.indices)):
+            try:
+                etr = next(textgenerator)
+                dat.append([etr['text'][0], np.array(etr['label'])[0]])
+            except StopIteration:
+                print(i)
+        train_dd = datasets.arrow_dataset.Dataset.from_pandas(pd.DataFrame(dat, columns =['text', 'label']))
 
     tokenizer = AutoTokenizer.from_pretrained(CHECKPOINT)
 
     def tokenize_function(examples):
         return tokenizer(examples["text"], truncation=True)
 
-    # random 100 samples
-    population = random.sample(range(len(raw_datasets["train"])), 100)
+    tokenized_train_dd = train_dd.map(tokenize_function, batched=True)
+    tokenized_test_dd = raw_datasets["test"].map(tokenize_function, batched=True)
 
-    tokenized_datasets = raw_datasets.map(tokenize_function, batched=True)
-    tokenized_datasets["train"] = tokenized_datasets["train"].select(population)
-    tokenized_datasets["test"] = tokenized_datasets["test"].select(population)
 
-    tokenized_datasets = tokenized_datasets.remove_columns("text")
-    tokenized_datasets = tokenized_datasets.rename_column("label", "labels")
+    tokenized_train_dd = tokenized_train_dd.remove_columns("text")
+    tokenized_train_dd = tokenized_train_dd.rename_column("label", "labels")
+
+    tokenized_test_dd = tokenized_test_dd.remove_columns("text")
+    tokenized_test_dd = tokenized_test_dd.rename_column("label", "labels")
 
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
+
     trainloader = DataLoader(
-        tokenized_datasets["train"],
+        tokenized_train_dd,
         shuffle=True,
         batch_size=32,
         collate_fn=data_collator,
     )
 
     testloader = DataLoader(
-        tokenized_datasets["test"], batch_size=32, collate_fn=data_collator
+        tokenized_test_dd["test"], batch_size=32, collate_fn=data_collator
     )
 
     return trainloader, testloader
