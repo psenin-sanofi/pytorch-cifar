@@ -38,7 +38,7 @@ last_n = trainset.data.shape[0] - (part_num*2)
 split_n = [part_num] * (num_clients-1)
 split_n.append(last_n)
 
-traindata_split = torch.utils.data.random_split(trainset, split_n)
+traindata_split = torch.utils.data.srandom_split(trainset, split_n)
 
 for i in range(len(traindata_split)):
     print("==> saving part " + str(i+1) + " out of", len(traindata_split))
@@ -46,9 +46,7 @@ for i in range(len(traindata_split)):
 
 print("==> asserting part 0 correctness.")
 check_tensor = torch.load(path/(prefix+str(0)+'.pt'))
-dataset1 = torch.utils.data.dataset.Subset(trainset, check_tensor.indices)
-dataset2 = torch.utils.data.dataset.Subset(trainset, traindata_split[0].indices)
-if all(np.equal(dataset1.indices, dataset2.indices)):
+if all(np.equal(check_tensor.indices, traindata_split[0].indices)):
     print("==> assert OK.")
 else:
     print("==> assert is NOT OK.")

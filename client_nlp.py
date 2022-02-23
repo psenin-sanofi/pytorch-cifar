@@ -35,6 +35,7 @@ CHECKPOINT = "distilbert-base-uncased"  # transformer model checkpoint
 def load_data(split_idx):
     """Load IMDB data (training and eval)"""
     raw_datasets = load_dataset("imdb")
+    raw_datasets = raw_datasets.shuffle(seed=42)
     # remove unnecessary data split
     del raw_datasets["unsupervised"]
 
@@ -46,8 +47,6 @@ def load_data(split_idx):
         subset_idx = torch.load(path/(prefix+str(split_idx)+'.pt'))
         dataset = torch.utils.data.dataset.Subset(train_dd, subset_idx.indices)
         raw_datasets["train"] = dataset
-
-    raw_datasets = raw_datasets.shuffle(seed=42)
 
     tokenizer = AutoTokenizer.from_pretrained(CHECKPOINT)
 

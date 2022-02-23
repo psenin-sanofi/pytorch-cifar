@@ -39,9 +39,6 @@ transform_test = transforms.Compose([
 trainset = torchvision.datasets.CIFAR10(
     root='./data', train=True, download=True, transform=transform_train)
 
-testset = torchvision.datasets.CIFAR10(
-    root='./data', train=False, download=True, transform=transform_test)
-
 # Dividing the training data into num_clients, with each client having equal number of images
 num_clients = 3
 if args.n:
@@ -60,9 +57,7 @@ for i in range(len(traindata_split)):
 
 print("==> asserting part 0 correctness.")
 check_tensor = torch.load(path/(prefix+str(0)+'.pt'))
-dataset1 = torch.utils.data.dataset.Subset(trainset, check_tensor.indices)
-dataset2 = torch.utils.data.dataset.Subset(trainset, traindata_split[0].indices)
-if all(np.equal(dataset1.indices, dataset2.indices)):
+if all(np.equal(check_tensor.indices, traindata_split[0].indices)):
     print("==> assert OK.")
 else:
     print("==> assert is NOT OK.")
