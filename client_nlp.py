@@ -2,6 +2,7 @@ from collections import OrderedDict
 import warnings
 
 import flwr as fl
+import pandas as pd
 import torch
 
 import numpy as np
