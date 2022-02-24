@@ -85,13 +85,13 @@ def load_data(split_idx):
     trainloader = torch.utils.data.DataLoader(
         tokenized_train_dd,
         shuffle=True,
-        batch_size=16,
+        batch_size=32,
         collate_fn=data_collator
     )
 
     testloader = torch.utils.data.DataLoader(
         tokenized_test_dd,
-        batch_size=16,
+        batch_size=32,
         collate_fn=data_collator
     )
 
