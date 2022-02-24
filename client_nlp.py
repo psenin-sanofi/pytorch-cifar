@@ -160,7 +160,6 @@ def test_save(net, testloader, best_acc, epoch):
             batch = {k: v.to(DEVICE) for k, v in data.items()}
             outputs = net(**batch)
             loss = outputs.loss
-            loss.backward()
 
             test_loss += loss.item()
             predictions = torch.argmax(outputs.logits, dim=-1)
