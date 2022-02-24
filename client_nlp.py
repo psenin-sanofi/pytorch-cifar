@@ -149,28 +149,43 @@ def test_save(net, testloader, best_acc, epoch):
 
     metric = load_metric("accuracy")
     test_loss = 0
+    correct = 0
+    total = 0
     net.eval()
 
-    for batch in testloader:
-        batch = {k: v.to(DEVICE) for k, v in batch.items()}
-        with torch.no_grad():
-            outputs = net(**batch)
-        logits = outputs.logits
-        test_loss += outputs.loss.item()
-        predictions = torch.argmax(logits, dim=-1)
-        metric.add_batch(predictions=predictions, references=batch["labels"])
-    test_loss /= len(testloader.dataset)
-    test_accuracy = metric.compute()["accuracy"]
+    with torch.no_grad():
 
-    if test_accuracy > best_acc:
-        print('Best accuracy', test_accuracy)
+        for batch_idx, data in enumerate(testloader):
+            targets = data['labels'].to(DEVICE)
+            batch = {k: v.to(DEVICE) for k, v in data.items()}
+            outputs = net(**batch)
+            loss = outputs.loss
+            loss.backward()
+
+            test_loss += loss.item()
+            predictions = torch.argmax(outputs.logits, dim=-1)
+            total += targets.size(0)
+            correct += predictions.eq(targets).sum().item()
+
+            progress_bar(batch_idx, len(testloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
+                         % (test_loss/(batch_idx+1), 100.*correct/total, correct, total))
 
     with open("./checkpoint/loss_acc_tracking.txt", "a") as track:
-        track.write("test," + str(test_loss) + "," + str(test_accuracy) + "\n")
+        track.write("test," + str(test_loss) + "," + str(100.*correct/total) +
+                    "," + str(correct) + "," + str(total) + "\n")
 
-    return test_accuracy
-
-
+    # Save checkpoint.
+    acc = 100.*correct/total
+    if acc > best_acc:
+        print('Saving... accuracy', acc)
+        state = {
+            'net': net.state_dict(),
+            'acc': acc,
+            'epoch': epoch,
+        }
+        torch.save(state, './checkpoint/ckpt.pth')
+        best_acc = acc
+    return best_acc
 
 def main():
 
