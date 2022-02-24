@@ -107,12 +107,12 @@ def train(net, optimizer, trainloader, epochs, scheduler):
         total = 0
         for batch_idx, data in enumerate(trainloader):
             print(batch_idx)
+            targets=data['labels']
             print(data)
-            inputs, targets = data['text'], data['labels']
-            inputs, targets = inputs.to(DEVICE), targets.to(DEVICE)
+            batch = {k: v.to(DEVICE) for k, v in data.items()}
             optimizer.zero_grad()
-            outputs = net(inputs)
-            loss = criterion(outputs, targets)
+            outputs = net(**batch)
+            loss = outputs.loss
             loss.backward()
             optimizer.step()
 
