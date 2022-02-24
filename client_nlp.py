@@ -106,6 +106,7 @@ def train(net, optimizer, trainloader, epochs, scheduler):
         correct = 0
         total = 0
         for batch_idx, data in enumerate(trainloader):
+            print(data)
             inputs, targets = data['text'], data['labels']
             inputs, targets = inputs.to(DEVICE), targets.to(DEVICE)
             optimizer.zero_grad()
