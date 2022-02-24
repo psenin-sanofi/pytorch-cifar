@@ -106,9 +106,7 @@ def train(net, optimizer, trainloader, epochs, scheduler):
         correct = 0
         total = 0
         for batch_idx, data in enumerate(trainloader):
-            print(batch_idx)
-            targets=data['labels'].to(DEVICE)
-            print(data)
+            targets = data['labels'].to(DEVICE)
             batch = {k: v.to(DEVICE) for k, v in data.items()}
             optimizer.zero_grad()
             outputs = net(**batch)
