@@ -115,8 +115,7 @@ def train(net, optimizer, trainloader, epochs, scheduler):
             optimizer.step()
 
             train_loss += loss.item()
-            logits = outputs.logits
-            predictions = torch.argmax(logits, dim=-1)
+            predictions = torch.argmax(outputs.logits, dim=-1)
             total += targets.size(0)
             correct += predictions.eq(targets).sum().item()
 
@@ -124,13 +123,14 @@ def train(net, optimizer, trainloader, epochs, scheduler):
                          % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
         scheduler.step()
 
-        print("train," + str(train_loss) + "," + str(100.*correct/total) +
+        with open("./checkpoint/loss_acc_tracking.txt", "a") as track:
+            track.write("train," + str(train_loss) + "," + str(100.*correct/total) +
                         "," + str(correct) + "," + str(total) + "\n")
 
 
 def test(net, testloader):
     metric = load_metric("accuracy")
-    loss = 0
+    correct, total, loss = 0, 0, 0.0
     net.eval()
     for batch in testloader:
         batch = {k: v.to(DEVICE) for k, v in batch.items()}
