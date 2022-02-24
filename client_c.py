@@ -1,5 +1,6 @@
-from collections import OrderedDict
+import os
 import warnings
+import argparse
 
 import flwr as fl
 import torch.nn as nn
@@ -8,17 +9,15 @@ import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 from torchvision.datasets import CIFAR10
 
+from collections import OrderedDict
+
 from models import *
+from utils import progress_bar
 
 from pathlib import Path
 
 warnings.filterwarnings("ignore", category=UserWarning)
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-
-from utils import progress_bar
-
-import os
-import argparse
 
 # IF no tracking folder exists, create one automatically
 if not os.path.isdir('checkpoint'):

@@ -1,24 +1,27 @@
-from collections import OrderedDict
+import os
+import argparse
 import warnings
+import datasets
 
-import flwr as fl
-import pandas as pd
 import torch
+import flwr as fl
 
+import pandas as pd
 import numpy as np
+
 from torch.utils.data import DataLoader
 
 from datasets import load_dataset, load_metric
-
 from transformers import AutoTokenizer, DataCollatorWithPadding
 from transformers import AutoModelForSequenceClassification
 from transformers import AdamW
-import datasets
+
+from collections import OrderedDict
+
+from utils import progress_bar
 
 from pathlib import Path
 
-import os
-import argparse
 
 # IF no tracking folder exists, create one automatically
 if not os.path.isdir('checkpoint'):
@@ -33,6 +36,10 @@ warnings.filterwarnings("ignore", category=UserWarning)
 DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 CHECKPOINT = "distilbert-base-uncased"  # transformer model checkpoint
 
+
+# #############################################################################
+# 1. Dataloader
+# #############################################################################
 
 def load_data(split_idx):
     """Load IMDB data (training and eval)"""
@@ -69,7 +76,6 @@ def load_data(split_idx):
     tokenized_train_dd = train_dd.map(tokenize_function, batched=True)
     tokenized_test_dd = raw_datasets["test"].map(tokenize_function, batched=True)
 
-
     tokenized_train_dd = tokenized_train_dd.remove_columns("text")
     tokenized_train_dd = tokenized_train_dd.rename_column("label", "labels")
 
@@ -92,17 +98,29 @@ def load_data(split_idx):
     return trainloader, testloader
 
 
-def train(net, trainloader, epochs):
-    optimizer = AdamW(net.parameters(), lr=5e-5)
+def train(net, optimizer, trainloader, epochs, scheduler):
+    criterion = torch.nn.CrossEntropyLoss()
     net.train()
     for _ in range(epochs):
-        for batch in trainloader:
-            batch = {k: v.to(DEVICE) for k, v in batch.items()}
-            outputs = net(**batch)
-            loss = outputs.loss
+        train_loss = 0
+        correct = 0
+        total = 0
+        for batch_idx, (inputs, targets) in enumerate(trainloader):
+            inputs, targets = inputs.to(DEVICE), targets.to(DEVICE)
+            optimizer.zero_grad()
+            outputs = net(inputs)
+            loss = criterion(outputs, targets)
             loss.backward()
             optimizer.step()
-            optimizer.zero_grad()
+
+            train_loss += loss.item()
+            _, predicted = outputs.max(1)
+            total += targets.size(0)
+            correct += predicted.eq(targets).sum().item()
+
+            progress_bar(batch_idx, len(trainloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
+                         % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
+        scheduler.step()
 
 
 def test(net, testloader):
@@ -165,6 +183,9 @@ def main():
         CHECKPOINT, num_labels=2
     ).to(DEVICE)
 
+    optimizer = AdamW(net.parameters(), lr=5e-5)
+    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=200)
+
     trainloader, testloader = load_data(args.idx)
 
     epochs_step = 1
@@ -185,7 +206,7 @@ def main():
 
         def fit(self, parameters, config):
             self.set_parameters(parameters)
-            train(net, trainloader, epochs=epochs_step)
+            train(net, optimizer, trainloader, epochs_step, scheduler)
             self.epoch_counter = self.epoch_counter + epochs_step
             self.best_acc = test_save(net, testloader, self.best_acc, self.epoch_counter)
             return self.get_parameters(), len(trainloader), {}
