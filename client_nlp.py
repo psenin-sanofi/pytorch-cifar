@@ -85,13 +85,13 @@ def load_data(split_idx):
     trainloader = torch.utils.data.DataLoader(
         tokenized_train_dd,
         shuffle=True,
-        batch_size=32,
+        batch_size=64,
         collate_fn=data_collator
     )
 
     testloader = torch.utils.data.DataLoader(
         tokenized_test_dd,
-        batch_size=32,
+        batch_size=64,
         collate_fn=data_collator
     )
 
@@ -122,6 +122,9 @@ def train(net, optimizer, trainloader, epochs, scheduler):
             progress_bar(batch_idx, len(trainloader), 'Loss: %.3f | Acc: %.3f%% (%d/%d)'
                          % (train_loss/(batch_idx+1), 100.*correct/total, correct, total))
         scheduler.step()
+
+        print("train," + str(train_loss) + "," + str(100.*correct/total) +
+                        "," + str(correct) + "," + str(total) + "\n")
 
 
 def test(net, testloader):
