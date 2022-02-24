@@ -9,8 +9,6 @@ import flwr as fl
 import pandas as pd
 import numpy as np
 
-from torch.utils.data import DataLoader
-
 from datasets import load_dataset, load_metric
 from transformers import AutoTokenizer, DataCollatorWithPadding
 from transformers import AutoModelForSequenceClassification
@@ -55,7 +53,7 @@ def load_data(split_idx):
         path = Path('./split_data/').expanduser()
         prefix = "imdb_split_part"
         subset_idx = torch.load(path/(prefix+str(split_idx)+'.pt'))
-        train_dl = DataLoader(subset_idx, shuffle=False)
+        train_dl = torch.utils.data.DataLoader(subset_idx, shuffle=False)
 
         dat = []
         textgenerator = iter(train_dl)
@@ -66,7 +64,7 @@ def load_data(split_idx):
                 dat.append([etr['text'][0], np.array(etr['label'])[0]])
             except StopIteration:
                 print(i)
-        train_dd = datasets.arrow_dataset.Dataset.from_pandas(pd.DataFrame(dat, columns =['text', 'label']))
+        train_dd = datasets.arrow_dataset.Dataset.from_pandas(pd.DataFrame(dat, columns=['text', 'label']))
 
     tokenizer = AutoTokenizer.from_pretrained(CHECKPOINT)
 
@@ -84,15 +82,19 @@ def load_data(split_idx):
 
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
-    trainloader = DataLoader(
+    trainloader = torch.utils.data.DataLoader(
         tokenized_train_dd,
         shuffle=True,
         batch_size=32,
         collate_fn=data_collator,
+        num_workers=2
     )
 
-    testloader = DataLoader(
-        tokenized_test_dd, batch_size=32, collate_fn=data_collator
+    testloader = torch.utils.data.DataLoader(
+        tokenized_test_dd,
+        batch_size=32,
+        collate_fn=data_collator,
+        num_workers=2
     )
 
     return trainloader, testloader
@@ -105,7 +107,8 @@ def train(net, optimizer, trainloader, epochs, scheduler):
         train_loss = 0
         correct = 0
         total = 0
-        for batch_idx, (inputs, targets) in enumerate(trainloader):
+        for batch_idx, data in enumerate(trainloader):
+            inputs, targets = data['text'], data['labels']
             inputs, targets = inputs.to(DEVICE), targets.to(DEVICE)
             optimizer.zero_grad()
             outputs = net(inputs)
