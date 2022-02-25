@@ -12,7 +12,7 @@ if __name__ == "__main__":
     # Start server
     fl.server.start_server(
         server_address="[::]:8080",
-        config={"num_rounds": 250},
+        config={"num_rounds": 10},
         strategy=strategy,
         force_final_distributed_eval=True
     )
