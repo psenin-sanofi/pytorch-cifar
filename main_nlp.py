@@ -50,7 +50,7 @@ def load_data():
     tokenized_train_dd = tokenized_train_dd.remove_columns("text")
     tokenized_train_dd = tokenized_train_dd.rename_column("label", "labels")
 
-    tokenized_test_dd = tokenizer(raw_datasets["test"]["text"], truncation=True, padding=True)
+    tokenized_test_dd = raw_datasets["test"].map(tokenize_function, batched=True)
     tokenized_test_dd = tokenized_test_dd.remove_columns("text")
     tokenized_test_dd = tokenized_test_dd.rename_column("label", "labels")
 
