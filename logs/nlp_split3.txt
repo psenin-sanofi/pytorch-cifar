@@ -1,0 +1,192 @@
+$ python server_nlp.py 
+INFO flower 2022-03-01 14:05:27,114 | app.py:80 | Flower server running (insecure, 10 rounds)
+INFO flower 2022-03-01 14:05:27,114 | server.py:118 | Initializing global parameters
+INFO flower 2022-03-01 14:05:27,115 | server.py:304 | Requesting initial parameters from one random client
+INFO flower 2022-03-01 14:06:00,687 | server.py:307 | Received initial parameters from one random client
+INFO flower 2022-03-01 14:06:00,688 | server.py:120 | Evaluating initial parameters
+INFO flower 2022-03-01 14:06:00,688 | server.py:133 | FL starting
+DEBUG flower 2022-03-01 14:06:00,688 | server.py:255 | fit_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:09:23,047 | server.py:264 | fit_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:09:23,620 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:11:06,197 | server.py:214 | evaluate_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:11:06,197 | server.py:255 | fit_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:14:28,365 | server.py:264 | fit_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:14:28,872 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:16:11,186 | server.py:214 | evaluate_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:16:11,186 | server.py:255 | fit_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:19:33,572 | server.py:264 | fit_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:19:34,031 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:21:16,558 | server.py:214 | evaluate_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:21:16,559 | server.py:255 | fit_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:24:38,370 | server.py:264 | fit_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:24:38,850 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:26:21,275 | server.py:214 | evaluate_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:26:21,275 | server.py:255 | fit_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:29:42,891 | server.py:264 | fit_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:29:43,321 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:31:25,668 | server.py:214 | evaluate_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:31:25,668 | server.py:255 | fit_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:34:47,914 | server.py:264 | fit_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:34:48,361 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:36:30,767 | server.py:214 | evaluate_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:36:30,767 | server.py:255 | fit_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:39:52,178 | server.py:264 | fit_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:39:52,615 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:41:35,106 | server.py:214 | evaluate_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:41:35,106 | server.py:255 | fit_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:44:57,389 | server.py:264 | fit_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:44:57,814 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:46:40,334 | server.py:214 | evaluate_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:46:40,334 | server.py:255 | fit_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:50:01,899 | server.py:264 | fit_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:50:02,306 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:51:44,536 | server.py:214 | evaluate_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:51:44,536 | server.py:255 | fit_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:55:06,324 | server.py:264 | fit_round received 2 results and 0 failures
+DEBUG flower 2022-03-01 14:55:06,755 | server.py:205 | evaluate_round: strategy sampled 2 clients (out of 3)
+DEBUG flower 2022-03-01 14:56:49,132 | server.py:214 | evaluate_round received 2 results and 0 failures
+INFO flower 2022-03-01 14:56:49,132 | server.py:172 | FL finished in 3048.4440570919833
+INFO flower 2022-03-01 14:56:49,139 | app.py:119 | app_fit: losses_distributed [(1, 0.00683387229219079), (2, 0.006194970570504665), (3, 0.006086961831897497), (4, 0.006307764910161495), (5, 0.006510152947157621), (6, 0.006485151592642069), (7, 0.007990100421011448), (8, 0.00863572396337986), (9, 0.009334538131952286), (10, 0.00915145967155695)]
+INFO flower 2022-03-01 14:56:49,140 | app.py:120 | app_fit: metrics_distributed {}
+INFO flower 2022-03-01 14:56:49,140 | app.py:121 | app_fit: losses_centralized []
+INFO flower 2022-03-01 14:56:49,140 | app.py:122 | app_fit: metrics_centralized {}
+DEBUG flower 2022-03-01 14:56:49,140 | server.py:205 | evaluate_round: strategy sampled 3 clients (out of 3)
+DEBUG flower 2022-03-01 14:58:31,957 | server.py:214 | evaluate_round received 3 results and 0 failures
+INFO flower 2022-03-01 14:58:31,957 | app.py:132 | app_evaluate: federated loss: 0.00915145967155695
+INFO flower 2022-03-01 14:58:31,957 | app.py:136 | app_evaluate: results [('ipv4:10.24.167.165:51096', EvaluateRes(loss=0.00915145967155695, num_examples=782, accuracy=0.0, metrics={'accuracy': 0.93272})), ('ipv4:10.24.167.232:41810', EvaluateRes(loss=0.00915145967155695, num_examples=782, accuracy=0.0, metrics={'accuracy': 0.93272})), ('ipv4:10.24.167.162:53130', EvaluateRes(loss=0.00915145967155695, num_examples=782, accuracy=0.0, metrics={'accuracy': 0.93272}))]
+INFO flower 2022-03-01 14:58:31,957 | app.py:138 | app_evaluate: failures []
+
+****************************
+
+$ python client_nlp.py --idx 0 --ip 10.24.167.253:8080 
+ip 10.24.167.253:8080
+idx 0
+lr 0.1
+Some weights of the model checkpoint at distilbert-base-uncased were not used when initializing DistilBertForSequenceClassification: ['vocab_layer_norm.weight', 'vocab_projector.bias', 'vocab_transform.bias', 'vocab_layer_norm.bias', 'vocab_projector.weight', 'vocab_transform.weight']
+- This IS expected if you are initializing DistilBertForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DistilBertForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of DistilBertForSequenceClassification were not initialized from the model checkpoint at distilbert-base-uncased and are newly initialized: ['pre_classifier.bias', 'classifier.bias', 'classifier.weight', 'pre_classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/home/i-xxx/miniconda3/lib/python3.8/site-packages/transformers/optimization.py:306: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use thePyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+Reusing dataset imdb (/home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1)
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00, 1001.90it/s]
+Loading cached shuffled indices for dataset at /home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1/cache-8a9e43a6ac4acdff.arrow
+Loading cached shuffled indices for dataset at /home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1/cache-2eff9f118d84c6fe.arrow
+Loading cached shuffled indices for dataset at /home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1/cache-c0cc2c21e6f9b20f.arrow
+==> Training on a subset  0
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 9/9 [00:02<00:00,  3.40ba/s]
+Loading cached processed dataset at /home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1/cache-f1a1ce33b5b5fb95.arrow
+DEBUG flower 2022-03-01 14:05:59,762 | connection.py:36 | ChannelConnectivity.IDLE
+DEBUG flower 2022-03-01 14:05:59,763 | connection.py:36 | ChannelConnectivity.CONNECTING
+INFO flower 2022-03-01 14:05:59,763 | app.py:61 | Opened (insecure) gRPC connection
+DEBUG flower 2022-03-01 14:05:59,763 | connection.py:36 | ChannelConnectivity.READY
+ [=========================== 261/261 ============================>]  Step: 164ms | Tot: 1m37s | Loss: 0.324 | Acc: 85.791% (7149/8333)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m39s | Loss: 0.226 | Acc: 91.296% (22824/25000)                          
+Saving... accuracy 91.296
+ [=========================== 261/261 ============================>]  Step: 164ms | Tot: 1m37s | Loss: 0.185 | Acc: 93.256% (7771/8333)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m39s | Loss: 0.211 | Acc: 92.536% (23134/25000)                          
+Saving... accuracy 92.536
+ [=========================== 261/261 ============================>]  Step: 163ms | Tot: 1m37s | Loss: 0.129 | Acc: 95.440% (7953/8333)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m39s | Loss: 0.223 | Acc: 91.524% (22881/25000)                          
+ [=========================== 261/261 ============================>]  Step: 164ms | Tot: 1m37s | Loss: 0.081 | Acc: 97.252% (8104/8333)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m39s | Loss: 0.248 | Acc: 92.024% (23006/25000)                          
+ [=========================== 261/261 ============================>]  Step: 163ms | Tot: 1m37s | Loss: 0.049 | Acc: 98.488% (8207/8333)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m39s | Loss: 0.237 | Acc: 92.132% (23033/25000)                          
+ [=========================== 261/261 ============================>]  Step: 133ms | Tot: 1m37s | Loss: 0.027 | Acc: 99.208% (8267/8333)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m39s | Loss: 0.386 | Acc: 90.336% (22584/25000)                          
+ [=========================== 261/261 ============================>]  Step: 163ms | Tot: 1m37s | Loss: 0.030 | Acc: 98.980% (8248/8333)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m39s | Loss: 0.310 | Acc: 92.180% (23045/25000)                          
+ [=========================== 261/261 ============================>]  Step: 151ms | Tot: 1m37s | Loss: 0.027 | Acc: 99.088% (8257/8333)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m39s | Loss: 0.375 | Acc: 90.860% (22715/25000)                          
+ [=========================== 261/261 ============================>]  Step: 164ms | Tot: 1m37s | Loss: 0.016 | Acc: 99.496% (8291/8333)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m39s | Loss: 0.333 | Acc: 92.772% (23193/25000)                          
+Saving... accuracy 92.772
+DEBUG flower 2022-03-01 14:58:31,981 | connection.py:68 | Insecure gRPC channel closed
+INFO flower 2022-03-01 14:58:31,981 | app.py:72 | Disconnect and shut down
+==> best accuracy: 92.772
+
+****************************
+
+$ python client_nlp.py --idx 1 --ip 10.24.167.253:8080
+ip 10.24.167.253:8080
+idx 1
+lr 0.1
+Some weights of the model checkpoint at distilbert-base-uncased were not used when initializing DistilBertForSequenceClassification: ['vocab_transform.bias', 'vocab_transform.weight', 'vocab_projector.bias', 'vocab_projector.weight', 'vocab_layer_norm.weight', 'vocab_layer_norm.bias']
+- This IS expected if you are initializing DistilBertForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DistilBertForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of DistilBertForSequenceClassification were not initialized from the model checkpoint at distilbert-base-uncased and are newly initialized: ['classifier.bias', 'pre_classifier.bias', 'classifier.weight', 'pre_classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/home/i-xxx/miniconda3/lib/python3.8/site-packages/transformers/optimization.py:306: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use thePyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+Reusing dataset imdb (/home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1)
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00, 1003.90it/s]
+Loading cached shuffled indices for dataset at /home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1/cache-8a9e43a6ac4acdff.arrow
+Loading cached shuffled indices for dataset at /home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1/cache-2eff9f118d84c6fe.arrow
+Loading cached shuffled indices for dataset at /home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1/cache-c0cc2c21e6f9b20f.arrow
+==> Training on a subset  1
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 9/9 [00:02<00:00,  3.39ba/s]
+Loading cached processed dataset at /home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1/cache-f1a1ce33b5b5fb95.arrow
+DEBUG flower 2022-03-01 14:05:59,602 | connection.py:36 | ChannelConnectivity.IDLE
+DEBUG flower 2022-03-01 14:05:59,602 | connection.py:36 | ChannelConnectivity.CONNECTING
+INFO flower 2022-03-01 14:05:59,603 | app.py:61 | Opened (insecure) gRPC connection
+DEBUG flower 2022-03-01 14:05:59,603 | connection.py:36 | ChannelConnectivity.READY
+ [=========================== 261/261 ============================>]  Step: 164ms | Tot: 1m37s | Loss: 0.234 | Acc: 90.688% (7557/8333)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m40s | Loss: 0.206 | Acc: 92.404% (23101/25000)                          
+Saving... accuracy 92.404
+ [=========================== 261/261 ============================>]  Step: 164ms | Tot: 1m37s | Loss: 0.158 | Acc: 94.288% (7857/8333)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m40s | Loss: 0.230 | Acc: 91.152% (22788/25000)                          
+ [=========================== 261/261 ============================>]  Step: 164ms | Tot: 1m37s | Loss: 0.103 | Acc: 96.232% (8019/8333)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m40s | Loss: 0.218 | Acc: 92.228% (23057/25000)                          
+ [=========================== 261/261 ============================>]  Step: 164ms | Tot: 1m37s | Loss: 0.068 | Acc: 97.528% (8127/8333)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m40s | Loss: 0.230 | Acc: 91.608% (22902/25000)                          
+ [=========================== 261/261 ============================>]  Step: 164ms | Tot: 1m37s | Loss: 0.048 | Acc: 98.536% (8211/8333)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m40s | Loss: 0.277 | Acc: 92.508% (23127/25000)                          
+Saving... accuracy 92.508
+ [=========================== 261/261 ============================>]  Step: 159ms | Tot: 1m37s | Loss: 0.036 | Acc: 98.812% (8234/8333)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m40s | Loss: 0.288 | Acc: 92.408% (23102/25000)                          
+DEBUG flower 2022-03-01 14:58:31,984 | connection.py:68 | Insecure gRPC channel closed
+INFO flower 2022-03-01 14:58:31,984 | app.py:72 | Disconnect and shut down
+==> best accuracy: 92.508
+
+****************************
+
+$ python client_nlp.py --idx 2 --ip 10.24.167.253:8080
+ip 10.24.167.253:8080
+idx 2
+lr 0.1
+Some weights of the model checkpoint at distilbert-base-uncased were not used when initializing DistilBertForSequenceClassification: ['vocab_projector.bias', 'vocab_transform.weight', 'vocab_layer_norm.weight', 'vocab_layer_norm.bias', 'vocab_transform.bias', 'vocab_projector.weight']
+- This IS expected if you are initializing DistilBertForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DistilBertForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of DistilBertForSequenceClassification were not initialized from the model checkpoint at distilbert-base-uncased and are newly initialized: ['classifier.weight', 'classifier.bias', 'pre_classifier.bias', 'pre_classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/home/i-xxx/miniconda3/lib/python3.8/site-packages/transformers/optimization.py:306: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use thePyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+Reusing dataset imdb (/home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1)
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00, 1005.99it/s]
+Loading cached shuffled indices for dataset at /home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1/cache-8a9e43a6ac4acdff.arrow
+Loading cached shuffled indices for dataset at /home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1/cache-2eff9f118d84c6fe.arrow
+Loading cached shuffled indices for dataset at /home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1/cache-c0cc2c21e6f9b20f.arrow
+==> Training on a subset  2
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 9/9 [00:02<00:00,  3.32ba/s]
+Loading cached processed dataset at /home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1/cache-f1a1ce33b5b5fb95.arrow
+DEBUG flower 2022-03-01 14:05:59,664 | connection.py:36 | ChannelConnectivity.IDLE
+DEBUG flower 2022-03-01 14:05:59,664 | connection.py:36 | ChannelConnectivity.CONNECTING
+DEBUG flower 2022-03-01 14:05:59,665 | connection.py:36 | ChannelConnectivity.READY
+INFO flower 2022-03-01 14:05:59,665 | app.py:61 | Opened (insecure) gRPC connection
+ [=========================== 261/261 ============================>]  Step: 161ms | Tot: 1m37s | Loss: 0.308 | Acc: 86.573% (7215/8334)                           
+ [=========================== 782/782 ============================>]  Step: 33ms | Tot: 1m39s | Loss: 0.254 | Acc: 90.312% (22578/25000)                          
+Saving... accuracy 90.312
+ [=========================== 261/261 ============================>]  Step: 178ms | Tot: 1m37s | Loss: 0.185 | Acc: 93.161% (7764/8334)                           
+ [=========================== 782/782 ============================>]  Step: 33ms | Tot: 1m39s | Loss: 0.221 | Acc: 91.624% (22906/25000)                          
+Saving... accuracy 91.624
+ [=========================== 261/261 ============================>]  Step: 178ms | Tot: 1m37s | Loss: 0.126 | Acc: 95.476% (7957/8334)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m39s | Loss: 0.215 | Acc: 92.848% (23212/25000)                          
+Saving... accuracy 92.848
+ [=========================== 261/261 ============================>]  Step: 178ms | Tot: 1m37s | Loss: 0.068 | Acc: 97.768% (8148/8334)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m39s | Loss: 0.217 | Acc: 92.360% (23090/25000)                          
+ [=========================== 261/261 ============================>]  Step: 178ms | Tot: 1m37s | Loss: 0.048 | Acc: 98.452% (8205/8334)                           
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m39s | Loss: 0.329 | Acc: 90.688% (22672/25000)                          
+DEBUG flower 2022-03-01 14:58:31,982 | connection.py:68 | Insecure gRPC channel closed
+INFO flower 2022-03-01 14:58:31,982 | app.py:72 | Disconnect and shut down
+==> best accuracy: 92.848

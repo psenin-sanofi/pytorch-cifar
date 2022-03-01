@@ -1,0 +1,38 @@
+$ python main_nlp.py
+Some weights of the model checkpoint at distilbert-base-uncased were not used when initializing DistilBertForSequenceClassification: ['vocab_layer_norm.weight', 'vocab_projector.weight', 'vocab_layer_norm.bias', 'vocab_projector.bias', 'vocab_transform.weight', 'vocab_transform.bias']
+- This IS expected if you are initializing DistilBertForSequenceClassification from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing DistilBertForSequenceClassification from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of DistilBertForSequenceClassification were not initialized from the model checkpoint at distilbert-base-uncased and are newly initialized: ['pre_classifier.weight', 'classifier.weight', 'pre_classifier.bias', 'classifier.bias']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/home/i-xxx/miniconda3/lib/python3.8/site-packages/transformers/optimization.py:306: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use thePyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+Reusing dataset imdb (/home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1)
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:00<00:00, 1007.36it/s]
+Loading cached shuffled indices for dataset at /home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1/cache-8a9e43a6ac4acdff.arrow
+Loading cached shuffled indices for dataset at /home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1/cache-2eff9f118d84c6fe.arrow
+Loading cached shuffled indices for dataset at /home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1/cache-c0cc2c21e6f9b20f.arrow
+Loading cached processed dataset at /home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1/cache-b0d4f3acb66967b7.arrow
+Loading cached processed dataset at /home/i-xxx/.cache/huggingface/datasets/imdb/plain_text/1.0.0/2fdd8b9bcadd6e7055e742a706876ba43f19faee861df134affd7a3f60fc38a1/cache-eab181b7da074291.arrow
+ [=========================== 782/782 ============================>]  Step: 109ms | Tot: 4m54s | Loss: 0.258 | Acc: 89.484% (22371/25000)                         
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m40s | Loss: 0.197 | Acc: 92.248% (23062/25000)                          
+Saving... accuracy 92.248
+ [=========================== 782/782 ============================>]  Step: 109ms | Tot: 4m54s | Loss: 0.132 | Acc: 95.148% (23787/25000)                         
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m40s | Loss: 0.222 | Acc: 92.596% (23149/25000)                          
+Saving... accuracy 92.596
+ [=========================== 782/782 ============================>]  Step: 86ms | Tot: 4m53s | Loss: 0.072 | Acc: 97.588% (24397/25000)                          
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m40s | Loss: 0.241 | Acc: 92.544% (23136/25000)                          
+ [=========================== 782/782 ============================>]  Step: 100ms | Tot: 4m54s | Loss: 0.042 | Acc: 98.652% (24663/25000)                         
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m40s | Loss: 0.285 | Acc: 92.464% (23116/25000)                          
+ [=========================== 782/782 ============================>]  Step: 109ms | Tot: 4m53s | Loss: 0.031 | Acc: 99.068% (24767/25000)                         
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m40s | Loss: 0.294 | Acc: 92.076% (23019/25000)                          
+ [=========================== 782/782 ============================>]  Step: 110ms | Tot: 4m53s | Loss: 0.025 | Acc: 99.172% (24793/25000)                         
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m40s | Loss: 0.347 | Acc: 90.752% (22688/25000)                          
+ [=========================== 782/782 ============================>]  Step: 110ms | Tot: 4m54s | Loss: 0.021 | Acc: 99.340% (24835/25000)                         
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m40s | Loss: 0.357 | Acc: 92.308% (23077/25000)                          
+ [=========================== 782/782 ============================>]  Step: 109ms | Tot: 4m53s | Loss: 0.020 | Acc: 99.320% (24830/25000)                         
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m40s | Loss: 0.316 | Acc: 91.712% (22928/25000)                          
+ [=========================== 782/782 ============================>]  Step: 110ms | Tot: 4m54s | Loss: 0.019 | Acc: 99.356% (24839/25000)                         
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m40s | Loss: 0.351 | Acc: 91.776% (22944/25000)                          
+ [=========================== 782/782 ============================>]  Step: 67ms | Tot: 4m54s | Loss: 0.014 | Acc: 99.556% (24889/25000)                          
+ [=========================== 782/782 ============================>]  Step: 34ms | Tot: 1m40s | Loss: 0.465 | Acc: 91.804% (22951/25000)                          
+==> best accuracy: 92.596
