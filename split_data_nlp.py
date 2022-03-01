@@ -33,7 +33,7 @@ if args.n:
     num_clients = args.n
 
 part_num = int(trainset.data.shape[0] / num_clients)
-last_n = trainset.data.shape[0] - (part_num*2)
+last_n = trainset.data.shape[0] - ((num_clients-1)*part_num)
 split_n = [part_num] * (num_clients-1)
 split_n.append(last_n)
 
